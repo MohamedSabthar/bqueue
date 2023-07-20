@@ -1,0 +1,14 @@
+[package]
+org = "crates"
+name = "bqueue"
+version = "1.0.0"
+keywords = ["queue", "blocking", "blocking queue", "producer", "comsumer", "pubsub", "publisher", "subscriber"]
+repository = "https://github.com/MohamedSabthar/bqueue"
+distribution = "2201.4.0"
+
+[build-options]
+observabilityIncluded = true
+
+[[platform.java11.dependency]]
+groupId = "io.crates"
+path = "../native/build/libs/blocking-queue-native-1.0-SNAPSHOT.jar"
