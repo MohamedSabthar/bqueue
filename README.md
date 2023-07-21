@@ -34,22 +34,23 @@ The Blocking Queue Module provides an implementation of a Blocking Queue, which 
 
 ```ballerina
 import ballerina/io;
+import ballerina/lang.runtime;
+
 import crates/bqueue as bq;
 
 public function main() returns error? {
-    io:println("Start");
     final bq:BlockingQueue bq = new;
 
     worker A returns error? {
         record {} data = check bq.take();
-        io:println("Consumed data");
-        io:println(data);
+        io:println("Consumed data: ", data);
     }
 
     worker B returns error? {
+        runtime:sleep(1);
         map<anydata> data = {value: 1, isPresent: true};
         check bq.put(data);
-        io:println("Produced data");
+        io:println("Produced data: ", data);
     }
 
     check wait A;
